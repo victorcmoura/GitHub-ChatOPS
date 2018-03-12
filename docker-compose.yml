@@ -10,3 +10,4 @@ services:
       GITHUB_REPO_NAME:
       ZENHUB_AUTH_TOKEN:
       ZENHUB_REPO_ID:
+      SLACK_BOT_TOKEN:

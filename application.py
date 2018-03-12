@@ -1,15 +1,8 @@
-from github_application import RepositoryInstance
+from slack_application import SlackInstance
 import os
 
-gihub_token = os.environ['GITHUB_AUTH_TOKEN']
-zenhub_token = os.environ['ZENHUB_AUTH_TOKEN']
+SLACK_BOT_TOKEN = "xoxb-328451508706-TI23rkikDuGCjPG68nryfQ2B"
 
-searched_repo_full_name = os.environ['GITHUB_REPO_NAME']
+slack_token = SLACK_BOT_TOKEN
 
-repo = RepositoryInstance(authorization_token=gihub_token, repository_name=searched_repo_full_name)
-issues = repo.getOpenIssues()
-for issue in issues:
-        print("Issue #" + str(issue.number) + " - " + issue.title)
-prs = repo.getOpenPullRequests()
-for pr in prs:
-        print("Pull Request #" + str(pr.number) + " - " + pr.title)
+slack = SlackInstance(slack_token)

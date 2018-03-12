@@ -7,7 +7,7 @@ class BoardInstance(object):
     def __init__(self, authorization_token, repository_id):
         self.request_header = header = {'X-Authentication-Token': authorization_token}
         self.repo_id = repository_id
-        self.board_data = getBoardData()
+        self.board_data = self.getBoardData()
 
     def getIssueData(self, issue_number):
         link = 'https://api.zenhub.io/p1/repositories/' + str(self.repo_id) + '/issues/' + str(issue_number)

@@ -1,1 +1,3 @@
 pygithub
+slackclient
+requests
