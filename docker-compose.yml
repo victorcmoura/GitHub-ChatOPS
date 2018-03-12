@@ -6,5 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      GITHUB_AUTH_TOKEN: 
+      GITHUB_AUTH_TOKEN:
       GITHUB_REPO_NAME:
+      ZENHUB_AUTH_TOKEN:
+      ZENHUB_REPO_ID:
