@@ -25,7 +25,7 @@ class BoardInstance(object):
         pipeline = self.getBoardData()
         pipeline_id = None
 
-        for each in pipeline:
+        for each in pipeline['pipelines']:
             if each['name'] == pipeline_name:
                 pipeline_id = each['id']
 
@@ -33,4 +33,4 @@ class BoardInstance(object):
             # there is an id
             link = 'https://api.zenhub.io/p1/repositories/' + str(self.repo_id) + '/issues/'+ str(issue_number) + '/moves'
             body = {"pipeline_id": pipeline_id, "position": "top"}
-            r = requests.post(link, headers=self.request_header, body=body)
+            r = requests.post(link, headers=self.request_header, data=body)
