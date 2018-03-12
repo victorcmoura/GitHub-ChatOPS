@@ -71,7 +71,22 @@ class SlackInstance(object):
 
         elif command.startswith('move issue'):
             #not implemented yet
-            response = 'Not implemented yet...'
+            split_command = command.split()
+            
+            issue_number = int(split_command[2])
+            pipeline_name = ' '.join(split_command[4:])
+            
+            response = "Ok, moving issue #" + str(issue_number) + " to " + pipeline_name
+            
+            self.slack_instance.api_call(
+                "chat.postMessage",
+                channel=channel,
+                text=response or default_response
+            )
+
+            self.board.moveIssueTo(issue_number, pipeline_name)
+
+            response = "Done!"
 
         elif command.startswith('list open issues'):
             issues = self.repo.getOpenIssues()
