@@ -34,3 +34,18 @@ class BoardInstance(object):
             link = 'https://api.zenhub.io/p1/repositories/' + str(self.repo_id) + '/issues/'+ str(issue_number) + '/moves'
             body = {"pipeline_id": pipeline_id, "position": "top"}
             r = requests.post(link, headers=self.request_header, data=body)
+
+    def getBoardStatus(self):
+        board_data = self.getBoardData()
+        response = {
+            'columns':[]
+        }
+
+        for data in board_data['pipelines']:
+            response['columns'].append({
+                'name': data['name'],
+                'issues_count': len(data['issues']),
+                'issues': data['issues']
+            })
+        
+        return response

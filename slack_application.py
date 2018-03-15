@@ -105,6 +105,30 @@ class SlackInstance(object):
                 response = response + text
             if response == 'The open pull requests are:\n\n':
                 response = 'There are no open pull requests.'
+        
+        elif command.startswith('show board status'):
+            response = 'Ok, give me a second.'
+            
+            self.slack_instance.api_call(
+                "chat.postMessage",
+                channel=channel,
+                text=response or default_response
+            )
+
+            result = self.board.getBoardStatus()
+            issues = self.repo.getOpenIssues()
+
+            response = ""
+
+            for column in result['columns']:
+                response += column['name'] + ':\n'
+                response += "\t Number of issues: " + str(column['issues_count']) + "\n"
+                response += "\t Issues: \n"
+                for issue in column['issues']:
+                    selected_issues = filter(lambda x: x.number == issue['issue_number'], issues)
+                    selected_issues = list(selected_issues)[0]
+                    response += "\t\t#" + str(issue['issue_number']) + " - " + selected_issues.title + "\n"
+                response += "\n"
 
         # Sends the response back to the channel
         self.slack_instance.api_call(
