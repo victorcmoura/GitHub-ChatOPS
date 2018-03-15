@@ -67,7 +67,8 @@ class SlackInstance(object):
             response = '''The possible commands are:\n
             *move issue* "issue number" to "kanban status"\n
             *list open issues*\n
-            *list open pull requests*'''
+            *list open pull requests*
+            *show board status*'''
 
         elif command.startswith('move issue'):
             #not implemented yet
